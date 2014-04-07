@@ -13,38 +13,38 @@ public class risk
 	    Scanner s = new Scanner(System.in);
 	    //Read in number of units in attacking country
 	    int attack;
-	    System.out.println("Attacker number");
+	    System.out.println("Enter attacker number:");
 	    if (s.hasNextInt())
 	    {
 		attack = s.nextInt();
 		if (attack <= 1)
 		{
-		    System.out.println("Too low to attack");
+		    System.out.println("Too low to attack.");
 		    continue;
 		}
 	    }
 	    else
 	    {
-		System.out.println("Not a number");
+		System.out.println("Not a number.");
 		continue;
 	    }
 
 	    //Read in number of units in defending country
 	    int defend;
-	    System.out.println("Defender number");
+	    System.out.println("Enter defender number:");
 
 	    if (s.hasNextInt())
 	    {
 		defend = s.nextInt();
 		if (defend <= 0)
 		{
-		    System.out.println("Too low to defend");
+		    System.out.println("Too low to defend.");
 		    continue;
 		}
 	    }
 	    else
 	    {
-		System.out.println("Not a number");
+		System.out.println("Not a number.");
 		continue;
 	    }
 
@@ -53,6 +53,7 @@ public class risk
 	    //Fight!!!
 	    while (cont)
 	    {
+		//Figure out number of dice for each player
 		int att_dice = (attack > ATTACK_CAP ? ATTACK_CAP : attack - 1);
 		int def_dice = (defend > DEFEND_CAP ? DEFEND_CAP : defend);
 		int att[] = new int[att_dice];
@@ -140,28 +141,39 @@ public class risk
 		//Can battle continue?
 		if (defend == 0)
 		{
-		    System.out.println("Defender has lost");
+		    System.out.println("Defender has lost.");
 		    break;
 		}
 		else if (attack == 1)
 		{
-		    System.out.println("Attacker cannot continue");
+		    System.out.println("Attacker cannot continue.");
 		    break;
 		}
 	       
 		//Battle can continue!  Will it?
-		Scanner s3 = new Scanner(System.in);
+		Scanner s2 = new Scanner(System.in);
 		System.out.println("Go again?");
-		String s2 = s3.nextLine();
-		//if (s2.equals("")) s2 = s.nextLine();
-		cont = s2.toLowerCase().equals("yes") || s2.toLowerCase().equals("y") || s2.equals("");
+		String continue_string = s2.nextLine().toLowerCase();
+		cont = isYes(continue_string);
 	    }
 
 	    //Battle has ended.  New battle?
-	    Scanner s4 = new Scanner(System.in);
+	    Scanner s3 = new Scanner(System.in);
 	    System.out.println("New battle?");
-	    String again2 = s4.nextLine();
-	    again = again2.toLowerCase().equals("yes") || again2.toLowerCase().equals("y") || again2.equals("");
+	    String again_string = s3.nextLine().toLowerCase();
+	    again = isYes(again_string);
 	}
+    }
+
+    public static boolean isYes(String s)
+    {
+	String[] yes_options = {"yes", "y", ""};
+
+	for (int i = 0; i < yes_options.length; i++)
+	{
+	    if (s.equals(yes_options[i]))
+		return true;
+	}   
+	return false;
     }
 }
