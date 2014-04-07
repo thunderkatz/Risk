@@ -5,6 +5,8 @@ public class risk
 {
     public static void main(String args[])
     {
+	final int ATTACK_CAP = 3;
+	final int DEFEND_CAP = 2;
 	boolean again = true;
 	while (again)
 	{
@@ -51,8 +53,8 @@ public class risk
 	    //Fight!!!
 	    while (cont)
 	    {
-		int att_dice = (attack > 3 ? 3 : (attack == 3 ? 2 : 1));
-		int def_dice = (defend > 1 ? 2 : 1);
+		int att_dice = (attack > ATTACK_CAP ? ATTACK_CAP : attack - 1);
+		int def_dice = (defend > DEFEND_CAP ? DEFEND_CAP : defend);
 		int att[] = new int[att_dice];
 		int def[] = new int[def_dice];
 
