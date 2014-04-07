@@ -62,7 +62,7 @@ public class risk
 		    int pos = i;
 		    int x = (int)(Math.random() * 6) + 1;
 
-		    //Sort attacker dice
+		    //Sort rolled die into list of attacker dice
 		    for (int j = i - 1; j >= 0; j--)
 		    {
 			if (x > att[j])
@@ -91,7 +91,7 @@ public class risk
 		    int pos = i;
 		    int x = (int)(Math.random() * 6) + 1;
 
-		    //Sort defender dice (probably overkill)
+		    //Sort rolled die into list of defender dice
 		    for (int j = i - 1; j >= 0; j--)
 		    {
 			if (x > def[j])
